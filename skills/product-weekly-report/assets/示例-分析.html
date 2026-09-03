@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>示例 · 分析型周报（演示数据）</title>
+<link rel="stylesheet" href="报告样式.css">
+<script src="vendor/echarts.min.js"></script>
+<script src="图表.js"></script>
+</head>
+<body>
+<div class="page">
+
+  <div class="demo-banner">演示稿：以下全部数字、图表与结论均为虚构演示数据，仅展示排版与图表用法，不是任何真实报告。</div>
+
+  <header class="report-head">
+    <h1>产品运营周报（分析版）</h1>
+    <p class="head-meta">报告周期：2026-08-20 至 2026-08-26<span class="meta-sep">|</span>金额单位：万元<span class="meta-sep">|</span>演示数据</p>
+  </header>
+
+  <div class="lead">
+    <p>本期在常规内容外增加趋势与对比图表（演示组织方式：图表可选，内容与章节仍由本次主稿决定）。每张图都配有同口径的数据表与文字摘要，不看图也能核对。</p>
+  </div>
+
+  <section>
+    <h2 class="sec">一、分周出货趋势</h2>
+    <p>热成像产品线近八周出货总体上行；07-30 周 BI 未导出该线数据，图中为断点（缺失不按 0 计）。轨交产品线 08-13 周数据缺失同样以断点呈现（演示数据）。</p>
+    <div class="chart" id="chart-trend"></div>
+    <p class="caption">演示数据。单位：万元。断点 = 该周数据缺失，不等于 0。</p>
+    <h3 class="sub">完整数据（演示数据）</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>周（截止日）</th><th class="num">热成像</th><th class="num">轨交</th></tr></thead>
+        <tbody>
+          <tr><td>07-09</td><td class="num">28.0</td><td class="num">120.0</td></tr>
+          <tr><td>07-16</td><td class="num">35.0</td><td class="num">96.0</td></tr>
+          <tr><td>07-23</td><td class="num">40.0</td><td class="num">88.0</td></tr>
+          <tr><td>07-30</td><td class="num">未提供</td><td class="num">104.0</td></tr>
+          <tr><td>08-06</td><td class="num">33.0</td><td class="num">92.0</td></tr>
+          <tr><td>08-13</td><td class="num">38.0</td><td class="num">未提供</td></tr>
+          <tr><td>08-20</td><td class="num">42.0</td><td class="num">98.0</td></tr>
+          <tr><td>08-26</td><td class="num">40.0</td><td class="num">86.0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <script type="application/json">{
+  "周": ["07-09","07-16","07-23","07-30","08-06","08-13","08-20","08-26"],
+  "热成像": [28.0, 35.0, 40.0, null, 33.0, 38.0, 42.0, 40.0],
+  "轨交":   [120.0, 96.0, 88.0, 104.0, 92.0, null, 98.0, 86.0],
+  "单位": "万元", "说明": "null = 数据缺失，不按 0 计；演示数据"
+}</script>
+  </section>
+
+  <section>
+    <h2 class="sec">二、在手商机产品金额对比</h2>
+    <div class="chart" id="chart-compare"></div>
+    <p>四条产品线中，热成像在手商机产品金额 2,340.75 万元居首，较上期增加 60.65 万元；园区平台规模最小但环比略增（演示数据，结论与下表同口径）。</p>
+    <h3 class="sub">完整数据（演示数据）</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>产品线</th><th class="num">本期</th><th class="num">上期</th><th class="num">差额</th></tr></thead>
+        <tbody>
+          <tr><td>热成像</td><td class="num">2,340.75</td><td class="num">2,280.10</td><td class="num">+60.65</td></tr>
+          <tr><td>轨交</td><td class="num">1,108.40</td><td class="num">1,250.00</td><td class="num">-141.60</td></tr>
+          <tr><td>园区平台</td><td class="num">410.00</td><td class="num">388.50</td><td class="num">+21.50</td></tr>
+          <tr><td>冷链</td><td class="num">965.10</td><td class="num">902.00</td><td class="num">+63.10</td></tr>
+        </tbody>
+      </table>
+      <p class="caption">演示数据。单位：万元；差额由来源两值直接相减。</p>
+    </div>
+    <script type="application/json">{
+  "产品线": ["热成像","轨交","园区平台","冷链"],
+  "本期": [2340.75, 1108.40, 410.00, 965.10],
+  "上期": [2280.10, 1250.00, 388.50, 902.00],
+  "单位": "万元", "说明": "演示数据"
+}</script>
+  </section>
+
+  <section>
+    <h2 class="sec">三、附录：冷链分周出货量</h2>
+    <div class="chart chart-sm" id="chart-appendix"></div>
+    <p class="caption">演示数据。单位：台；六周均有数据、无缺失。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>周（截止日）</th><th class="num">出货量（台）</th></tr></thead>
+        <tbody>
+          <tr><td>07-23</td><td class="num">12</td></tr>
+          <tr><td>07-30</td><td class="num">18</td></tr>
+          <tr><td>08-06</td><td class="num">9</td></tr>
+          <tr><td>08-13</td><td class="num">21</td></tr>
+          <tr><td>08-20</td><td class="num">16</td></tr>
+          <tr><td>08-26</td><td class="num">24</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <script type="application/json">{
+  "周": ["07-23","07-30","08-06","08-13","08-20","08-26"],
+  "冷链出货量": [12, 18, 9, 21, 16, 24],
+  "单位": "台", "说明": "演示数据"
+}</script>
+  </section>
+
+  <footer class="report-foot">
+    <p>本页为图表用法演示：图表只呈现给定数据，统计与结论以正文和数据表为准。演示数据，无真实业务含义。</p>
+  </footer>
+
+</div>
+
+<script>
+初始化图表(document.getElementById('chart-trend'), {
+  tooltip: { trigger: 'axis' },
+  legend: { data: ['热成像', '轨交'] },
+  xAxis: { type: 'category', data: ['07-09','07-16','07-23','07-30','08-06','08-13','08-20','08-26'] },
+  yAxis: { type: 'value', name: '万元' },
+  series: [
+    { name: '热成像', type: 'line', data: [28.0, 35.0, 40.0, null, 33.0, 38.0, 42.0, 40.0] },
+    { name: '轨交', type: 'line', data: [120.0, 96.0, 88.0, 104.0, 92.0, null, 98.0, 86.0] }
+  ]
+});
+
+初始化图表(document.getElementById('chart-compare'), {
+  tooltip: { trigger: 'axis' },
+  legend: { data: ['本期', '上期'] },
+  xAxis: { type: 'category', data: ['热成像', '轨交', '园区平台', '冷链'] },
+  yAxis: { type: 'value', name: '万元' },
+  series: [
+    { name: '本期', type: 'bar', data: [2340.75, 1108.40, 410.00, 965.10] },
+    { name: '上期', type: 'bar', data: [2280.10, 1250.00, 388.50, 902.00] }
+  ]
+});
+
+初始化图表(document.getElementById('chart-appendix'), {
+  tooltip: { trigger: 'axis' },
+  xAxis: { type: 'category', data: ['07-23','07-30','08-06','08-13','08-20','08-26'] },
+  yAxis: { type: 'value', name: '台' },
+  series: [{ name: '冷链出货量', type: 'bar', data: [12, 18, 9, 21, 16, 24] }]
+});
+</script>
+</body>
+</html>

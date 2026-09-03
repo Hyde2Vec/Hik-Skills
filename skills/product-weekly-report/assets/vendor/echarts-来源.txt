@@ -1,0 +1,14 @@
+Apache ECharts 本地随附文件
+
+版本：6.1.0（正式版）
+文件：echarts.min.js（完整版 dist）、echarts-LICENSE.txt、echarts-NOTICE.txt
+许可证：Apache License 2.0（见 echarts-LICENSE.txt、echarts-NOTICE.txt）
+官方发布来源：npm 官方仓库 echarts 包
+  https://registry.npmjs.org/echarts/-/echarts-6.1.0.tgz
+  包内路径：package/dist/echarts.min.js、package/LICENSE、package/NOTICE
+发布页：https://github.com/apache/echarts/releases （tag 6.1.0）
+获取日期：2026-09-03
+tarball SHA-256：681aff88cc1038c3fa941a3a53d1b177a52250b05335efc607d6105ae13be481
+
+用途：仅需要图表的报告引用本文件；普通报告不加载。
+可整目录随交付复制，或将文件内容内联进单文件 HTML；不要改成联网 CDN 引用。

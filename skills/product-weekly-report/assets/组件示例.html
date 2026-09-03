@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>组件示例 · 产品运营报告</title>
+<link rel="stylesheet" href="报告样式.css">
+<style>
+  /* 仅本目录页自用的代码展示样式，不属于报告样式 */
+  pre.code {
+    margin: 8px 0 20px;
+    padding: 10px 14px;
+    background: #f7f6f2;
+    border: 1px solid var(--hairline);
+    font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    color: #4a5058;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .when { color: var(--muted); font-size: 13.5px; margin: 0 0 10px; }
+  .when b { color: var(--accent-text); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="demo-banner">本页是组件目录：所有名称、数字与事件均为演示数据，仅用于说明表达方式。</div>
+
+  <header class="report-head">
+    <h1>报告组件示例</h1>
+    <p class="head-meta">表达组件目录<span class="meta-sep">|</span>配合 报告样式.css 使用<span class="meta-sep">|</span>组件按需选用、自由组合</p>
+  </header>
+
+  <div class="lead">
+    <p>这些组件是表达手段，不是固定章节。手机 OA 阅读的 PNG 长图是第一产物，HTML 是同内容的网页副本：组件在 390/768/1440 等宽度自适应重排——手机纵向可读，宽屏并列信息网格分栏，内容、顺序与默认可见状态在所有宽度一致；不用折叠、不用横向滚动承载必要信息。一期报告可以只用其中两三样，也可以把组件嵌套出本页没有的布局。选择依据永远是已确认主稿的内容结构，不是组件清单本身。片段中的类名均为 报告样式.css 中已定义的样式。</p>
+  </div>
+
+  <section>
+    <h2 class="sec">页面骨架</h2>
+    <p class="when"><b>适用：</b>每份报告的最外层。报头放标题与周期、范围等一行口径；<code>lead</code> 放开场段（周期、范围、总体说明）；<code>report-foot</code> 放文末说明（口径、来源、编制信息）。三者都可省略，顺序固定为先头后尾。</p>
+<pre class="code">&lt;div class="page"&gt;
+  &lt;header class="report-head"&gt;
+    &lt;h1&gt;产品运营周报&lt;/h1&gt;
+    &lt;p class="head-meta"&gt;报告周期：…&lt;span class="meta-sep"&gt;|&lt;/span&gt;统计范围：…&lt;/p&gt;
+  &lt;/header&gt;
+  &lt;div class="lead"&gt;&lt;p&gt;开场说明段…&lt;/p&gt;&lt;/div&gt;
+  &lt;!-- 各章节 --&gt;
+  &lt;footer class="report-foot"&gt;&lt;p&gt;口径与来源说明…&lt;/p&gt;&lt;/footer&gt;
+&lt;/div&gt;</pre>
+  </section>
+
+  <section>
+    <h2 class="sec">章节与标题层级</h2>
+    <p class="when"><b>适用：</b><code>h2.sec</code> 是一级章节（一个产品、一个专题、一张总表都可以是章节）；<code>h3.sub</code> 是章节内小标题。章节数量和名称完全由本次内容决定，长产品名会自动换行，不需要为排版缩短名称。</p>
+    <h3 class="sub">章节内小标题的样子</h3>
+    <p>小标题下直接接正文段落即可，不需要额外容器。</p>
+<pre class="code">&lt;section&gt;
+  &lt;h2 class="sec"&gt;一、超长名称的产品或专题标题会自然换行不受影响&lt;/h2&gt;
+  &lt;h3 class="sub"&gt;本期进展&lt;/h3&gt;
+  &lt;p&gt;正文段落…&lt;/p&gt;
+&lt;/section&gt;</pre>
+  </section>
+
+  <section>
+    <h2 class="sec">指标组</h2>
+    <p class="when"><b>适用：</b>一组并列的关键数字（出货、订单、商机、金额等）。列数随指标个数自适应；单位放 <code>.unit</code>；口径或比较基准放 <code>.metric-sub</code>；缺数必须显示“未提供”（<code>.metric-value na</code>），不留空不凑数。数字保持来源原样，不为对齐改写法。</p>
+    <div class="metrics">
+      <div class="metric">
+        <span class="metric-label">年度累计出货（演示）</span>
+        <span class="metric-value">1,090<span class="unit">万元</span></span>
+        <span class="metric-sub">口径：含海外子公司</span>
+      </div>
+      <div class="metric">
+        <span class="metric-label">本期出货（演示）</span>
+        <span class="metric-value">40<span class="unit">万元</span></span>
+      </div>
+      <div class="metric">
+        <span class="metric-label">在手订单（演示）</span>
+        <span class="metric-value na">未提供</span>
+        <span class="metric-sub">来源缺该字段，待补充</span>
+      </div>
+    </div>
+<pre class="code">&lt;div class="metrics"&gt;
+  &lt;div class="metric"&gt;
+    &lt;span class="metric-label"&gt;指标名&lt;/span&gt;
+    &lt;span class="metric-value"&gt;1,090&lt;span class="unit"&gt;万元&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="metric-sub"&gt;口径或基准说明（可省）&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="metric"&gt;
+    &lt;span class="metric-label"&gt;缺数指标&lt;/span&gt;
+    &lt;span class="metric-value na"&gt;未提供&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+  </section>
+
+  <section>
+    <h2 class="sec">表格（仅少列表）</h2>
+    <p class="when"><b>适用：</b>列数少（约 2–4 列）、文字列可换行的结构化数据，在 390px 阅读宽下整表可见。务必包一层 <code>.table-wrap</code>。数字列加 <code>class="num"</code> 右对齐等宽、数值不拆行；表注用 <code>.caption</code> 写口径与范围。<b>列多的宽表不要塞进报告</b>：改用键值行列表逐条表达（见下节），全部字段保留为文字；表格横向溢出会被检查工具判为失败并要求重排。</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>项目（演示）</th><th>状态</th><th class="num">金额（万元）</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>某园区智能化改造项目三期工程</td><td>进行中</td><td class="num">126.50</td></tr>
+          <tr><td>某客户年度框架采购</td><td>已签约</td><td class="num">1,024.00</td></tr>
+        </tbody>
+      </table>
+      <p class="caption">表注写法示例：金额单位为万元，范围为选定产品（演示数据）。</p>
+    </div>
+<pre class="code">&lt;div class="table-wrap"&gt;
+  &lt;table&gt;
+    &lt;thead&gt;&lt;tr&gt;&lt;th&gt;项目&lt;/th&gt;&lt;th class="num"&gt;金额（万元）&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+    &lt;tbody&gt;&lt;tr&gt;&lt;td&gt;…&lt;/td&gt;&lt;td class="num"&gt;126.50&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+  &lt;/table&gt;
+  &lt;p class="caption"&gt;口径、范围、来源说明。&lt;/p&gt;
+&lt;/div&gt;</pre>
+  </section>
+
+  <section>
+    <h2 class="sec">事件列表与状态标签</h2>
+    <p class="when"><b>适用：</b>本期事件、进展、事项逐条列出。<code>.tag</code> 标状态（新增 / 更新 / 风险 / 待核对等），标签只帮助扫读，文字本身仍须完整表达事实与条件。来源文本本身多行时给条目加 <code>.keep-lines</code> 保留换行。没有事件时写 <code>.empty-note</code> 明示，不留空白。</p>
+    <ul class="events">
+      <li><span class="tag tag-accent">本期新增</span>某项目完成现场测试，待客户确认，预计月底出货（演示事件）。</li>
+      <li><span class="tag tag-info">持续推进</span><span class="keep-lines">某项目方案评审通过；
+下一步进入商务谈判阶段（演示事件，保留来源换行）。</span></li>
+      <li><span class="tag tag-strong">待核对</span>某记录本期消失，需确认是更名还是跟踪范围调整（演示事件）。</li>
+    </ul>
+    <p class="empty-note">空状态示例：本期无新增可报告进展。</p>
+<pre class="code">&lt;ul class="events"&gt;
+  &lt;li&gt;&lt;span class="tag tag-accent"&gt;本期新增&lt;/span&gt;事件文字，保留否定与条件…&lt;/li&gt;
+  &lt;li&gt;&lt;span class="tag tag-info"&gt;持续推进&lt;/span&gt;&lt;span class="keep-lines"&gt;多行
+进展文字&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p class="empty-note"&gt;本期无新增可报告进展。&lt;/p&gt;
+&lt;!-- 标签变体：tag（灰）/ tag-accent（金铜）/ tag-info（灰绿）/ tag-strong（墨蓝） --&gt;</pre>
+  </section>
+
+  <section>
+    <h2 class="sec">键值行列表</h2>
+    <p class="when"><b>适用：</b>台账式明细与宽表的替代：名称居左、数值居右对齐（出货明细、费用明细、分地区小计）。数值用 <code>.row-side</code>，附属信息放 <code>.row-detail</code>；字段多时在 <code>.row-detail</code> 上加 <code>.keep-lines</code> 分行罗列全部字段（原多列宽表按此逐条转换，字段一个不少）。</p>
+    <ul class="rows">
+      <li>
+        <span class="row-main"><span class="row-name">某项目（演示）</span> <span class="row-detail">某地区 · 某客户</span></span>
+        <span class="row-side">18 台</span>
+      </li>
+      <li>
+        <span class="row-main"><span class="row-name">名称很长的项目会占据左侧空间并换行（演示）</span>
+          <span class="row-detail keep-lines">字段一：某值 · 字段二：某值
+更多字段逐行列出，完整保留</span></span>
+        <span class="row-side">2 万元</span>
+      </li>
+    </ul>
+<pre class="code">&lt;ul class="rows"&gt;
+  &lt;li&gt;
+    &lt;span class="row-main"&gt;&lt;span class="row-name"&gt;项目名&lt;/span&gt;
+      &lt;span class="row-detail keep-lines"&gt;字段逐行
+分行列出&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="row-side"&gt;18 台&lt;/span&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</pre>
+  </section>
+
+  <section>
+    <h2 class="sec">说明区</h2>
+    <p class="when"><b>适用：</b>口径说明、数据限制用默认 <code>.note</code>（灰绿）；需特别关注的风险、待确认事项用 <code>.note-attention</code>（金铜）。不用红色警告样式；说明区是正文的一部分，内容须与正文事实一致。</p>
+    <div class="note">
+      <span class="note-title">口径说明（演示）</span>
+      <p>本期统计仅覆盖选定产品，明细合计与来源总计存在 0.5 万元差异，原因待核对。</p>
+    </div>
+    <div class="note note-attention">
+      <span class="note-title">需关注（演示）</span>
+      <p>某项目预计出货不等于已出货；客户验收完成前不确认收入。</p>
+    </div>
+<pre class="code">&lt;div class="note"&gt;
+  &lt;span class="note-title"&gt;口径说明&lt;/span&gt;
+  &lt;p&gt;说明文字…&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="note note-attention"&gt;
+  &lt;span class="note-title"&gt;需关注&lt;/span&gt;
+  &lt;ul&gt;&lt;li&gt;事项一&lt;/li&gt;&lt;/ul&gt;
+&lt;/div&gt;</pre>
+  </section>
+
+  <section>
+    <h2 class="sec">不使用折叠</h2>
+    <p class="when"><b>原则：</b>图片与网页必须同内容、同布局，因此报告正文不使用 <code>details</code> 折叠——明细、附录、核对依据全部默认可见，用小标题（<code>h3.sub</code>）＋键值行／少列表直接展开排。内容长就分段分页呈现，不靠点击展开。机读 JSON 放 <code>&lt;script type="application/json"&gt;</code> 非呈现节点，页面上不显示代码块。</p>
+  </section>
+
+  <section>
+    <h2 class="sec">辅助类与组合</h2>
+    <p class="when"><b>适用：</b>正文内的细节控制，以及用基础元素组合出本页未列出的布局。</p>
+    <ul class="events">
+      <li><code>.num</code>：正文内嵌数字等宽（如“较上期 <span class="num">+12.5%</span>”）。</li>
+      <li><code>.muted</code> / <code>.faint</code>：次级与弱辅助文字；<code>.small</code>：小字；<code>.nowrap</code>：短数值不换行；<code>.keep-lines</code>：保留文字中的真实换行。</li>
+      <li>组件可嵌套：说明区里放列表、章节里连续放指标组＋事件列表＋说明区。</li>
+      <li>基础元素（段落、<code>ul</code>/<code>ol</code>、<code>strong</code>）可直接使用；需要新布局时按语义组合类名，不引入本样式表之外的机制。</li>
+    </ul>
+<pre class="code">&lt;p&gt;较上期 &lt;span class="num nowrap"&gt;+12.5%&lt;/span&gt;，&lt;span class="muted"&gt;口径同上。&lt;/span&gt;&lt;/p&gt;</pre>
+  </section>
+
+  <section>
+    <h2 class="sec">图表（可选）</h2>
+    <p class="when"><b>适用：</b>本次报告确实需要趋势、对比等图形时；普通报告不引用图表文件。图表用本地 <code>vendor/echarts.min.js</code> ＋ <code>图表.js</code> 的 <code>初始化图表(容器, option)</code>，容器用 <code>.chart</code>。静态图必须表达完整要点（tooltip 等交互只是增强）；每张图配同口径、默认可见的数据表与文字摘要，机读 JSON 放相邻 <code>application/json</code> 节点，缺失写 <code>null</code> 不按 0。完整可运行示例见 <code>示例-分析.html</code>，打包与数据纪律见呈现规范的“图表（可选）”一节。</p>
+<pre class="code">&lt;script src="vendor/echarts.min.js"&gt;&lt;/script&gt;
+&lt;script src="图表.js"&gt;&lt;/script&gt;
+&lt;div class="chart" id="chart-1"&gt;&lt;/div&gt;
+&lt;script&gt;
+初始化图表(document.getElementById('chart-1'), {
+  tooltip: { trigger: 'axis' },
+  xAxis: { type: 'category', data: ['…'] },
+  yAxis: { type: 'value', name: '万元' },
+  series: [{ name: '本期', type: 'line', data: […, null, …] }]  // null = 缺失断点
+});
+&lt;/script&gt;</pre>
+  </section>
+
+  <footer class="report-foot">
+    <p>组件目录结束。完整内容组织示例见同目录 示例-逐产品.html、示例-表格专题.html 与 示例-分析.html（含图表）。</p>
+  </footer>
+
+</div>
+</body>
+</html>

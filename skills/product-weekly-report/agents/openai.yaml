@@ -1,0 +1,6 @@
+interface:
+  display_name: "产品运营周报"
+  short_description: "适应不同业务材料与报告格式，核对产品运营事实，灵活编写并生成中文周报"
+  default_prompt: "使用 $product-weekly-report，根据本次要求与实际材料编写产品运营周报，复用适用的业务约定，按需分析并交付所需成品，只集中提出影响必要结论的未决问题。"
+policy:
+  allow_implicit_invocation: true

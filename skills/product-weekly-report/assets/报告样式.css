@@ -1,0 +1,449 @@
+/* 报告样式.css — 中文产品运营报告统一样式（手机图片优先、网页响应式）
+   第一产物是手机 OA 里阅读的 PNG 长图（390 CSS px × 3 倍密度），HTML 是同内容的网页副本。
+   同一份 HTML 与 CSS 自适应重排：手机纵向可读；≥720px 收成舒适卡片版心；
+   ≥1200px 版心放宽、并列信息（指标组等）网格分栏，正文行长有上限。
+   宽度变化只引起重排，内容、重点、阅读顺序与默认可见状态不变：
+   不使用折叠、横向滚动或悬浮提示承载必要信息，不按宽度隐藏字段。
+   克制、干净、少装饰；零外部依赖（无 CDN、无外部字体）。
+   承载：页面内容放在 <div class="page"> 内；组件按语义自由组合、可嵌套，
+   不设固定章节或封闭组件清单。组件用法见同目录 组件示例.html。 */
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+:root {
+  --ink: #1e2a38;             /* 深墨蓝：标题、关键数字 */
+  --text: #33383f;            /* 炭黑正文 */
+  --muted: #6f757c;           /* 次级说明 */
+  --faint: #9aa0a6;           /* 弱辅助文字 */
+  --hairline: #e4e1d9;        /* 暖灰细分隔线 */
+  --hairline-strong: #d3cfc3; /* 稍强分隔线 */
+  --paper: #ffffff;
+  --desk: #f5f3ee;            /* 桌面屏幕底色：极浅暖灰 */
+  --accent: #8a6a45;          /* 低饱和金铜：强调、需关注 */
+  --accent-text: #77603c;
+  --accent-soft: #f8f4ec;
+  --accent-line: #d9c9a8;
+  --info: #5b7062;            /* 灰绿：一般性说明 */
+  --info-soft: #f2f5f1;
+  --info-line: #a9bcae;
+}
+
+/* 基准即手机：整页文档，无卡片悬浮 */
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Source Han Sans SC", sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.page {
+  margin: 0;
+  padding: 24px 18px;
+  background: var(--paper);
+}
+
+/* 正文行长上限：宽屏下段落不跟随版心拉长，保持可读 */
+p { margin: 8px 0; max-width: 42em; overflow-wrap: break-word; }
+
+/* ---------- 报头与开场 ---------- */
+
+.report-head { text-align: center; }
+
+.report-head h1 {
+  margin: 0;
+  font-family: "Songti SC", "STSong", "Noto Serif SC", "SimSun", serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.08em;
+  overflow-wrap: anywhere;
+}
+
+.report-head h1::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 2px;
+  margin: 12px auto 0;
+  background: var(--accent);
+}
+
+.head-meta {
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.meta-sep { margin: 0 8px; color: var(--hairline-strong); }
+
+/* 开场段落：报告周期、范围与总体口径的一段说明 */
+.lead {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline);
+}
+
+/* ---------- 章节与标题层级 ---------- */
+
+section { margin-top: 28px; }
+
+/* 一级章节标题：一条细线托底，不做卡片 */
+h2.sec {
+  margin: 0 0 12px;
+  padding-bottom: 7px;
+  border-bottom: 2px solid var(--ink);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+/* 章节内小标题：小墨标引导，不加重线 */
+h3.sub {
+  margin: 18px 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+h3.sub::before {
+  content: "";
+  display: inline-block;
+  width: 3px;
+  height: 11px;
+  margin-right: 8px;
+  background: var(--ink);
+  vertical-align: -1px;
+}
+
+/* ---------- 指标组 ---------- */
+
+/* 关键数字格：上下细线夹住的 grid；390px 下自动两列，桌面最多一行 */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px 16px;
+  margin: 10px 0 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.metric { min-width: 0; }
+
+.metric-label {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 12.5px;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.metric-value {
+  display: block;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.metric-value .unit {
+  margin-left: 3px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* 缺数：明确写"未提供"，不凑数、不留空 */
+.metric-value.na {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--faint);
+}
+
+/* 指标补充说明（口径、范围、比较基准） */
+.metric-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--faint);
+  overflow-wrap: anywhere;
+}
+
+/* ---------- 表格（仅少列表：手机上列数少、文字列可换行） ---------- */
+
+.table-wrap { margin: 8px 0 16px; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+th, td {
+  padding: 6px 10px;
+  text-align: left;
+  vertical-align: baseline;
+  overflow-wrap: anywhere;
+}
+
+/* 首列左缘与版心对齐，其余相邻列保持双侧间距 */
+th:first-child, td:first-child { padding-left: 0; }
+
+th {
+  font-weight: 600;
+  color: var(--muted);
+  border-bottom: 1.5px solid var(--ink);
+}
+
+td { border-bottom: 1px solid var(--hairline); }
+
+tr:last-child td { border-bottom: 1px solid var(--hairline-strong); }
+
+/* 数字列：右对齐、等宽数字。数值（含百分号）与“未提供”等缺失标记
+   禁止在内部断行；列数多的表不应出现在 390px 报告中，改用键值行或逐条明细 */
+th.num, td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+td.num {
+  overflow-wrap: normal;
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
+/* 表注：口径、范围、来源 */
+.caption {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  color: var(--faint);
+}
+
+/* ---------- 事件列表 ---------- */
+
+/* 本期事件、进展、事项：小方块引导，可带状态标签，长文本自动换行 */
+.events {
+  margin: 6px 0 14px;
+  padding: 0;
+  list-style: none;
+}
+
+.events li {
+  position: relative;
+  padding: 5px 0 5px 16px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.events li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 13px;
+  width: 4px;
+  height: 4px;
+  background: #b7b1a4;
+}
+
+/* 保留来源文本中的真实换行（多行进展、逐条明细的字段分行） */
+.keep-lines { white-space: pre-line; }
+
+/* 状态标签：本期新增 / 更新 / 风险 / 待核对等，颜色仅作区分，不改变文字含义 */
+.tag {
+  display: inline-block;
+  margin: 0 6px 0 0;
+  padding: 0 6px;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 2px;
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 1.7;
+  color: var(--muted);
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+
+.tag-accent { color: var(--accent-text); border-color: var(--accent-line); background: var(--accent-soft); }
+.tag-info   { color: var(--info);        border-color: var(--info-line);   background: var(--info-soft); }
+.tag-strong { color: var(--ink);         border-color: var(--ink); }
+
+/* 无内容时的明示，不能留空白 */
+.empty-note { margin: 4px 0 12px; color: var(--faint); font-size: 13.5px; }
+
+/* ---------- 键值行列表（台账式明细，手机上代替宽表的主要手段） ---------- */
+
+/* 名称居左、数值居右对齐的明细行；字段多时用 .keep-lines 在 row-detail 内分行，
+   全部字段保留为文字，不塞进多列表格 */
+.rows {
+  margin: 6px 0 14px;
+  padding: 0;
+  list-style: none;
+}
+
+.rows li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 7px 0;
+}
+
+.rows li + li { border-top: 1px solid var(--hairline); }
+
+.row-main { flex: 1; min-width: 0; overflow-wrap: break-word; }
+
+.row-name { color: var(--ink); font-weight: 600; }
+
+.row-detail { color: var(--muted); }
+
+.row-side {
+  flex-shrink: 0;
+  white-space: nowrap;
+  color: var(--ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 图表容器 ---------- */
+
+/* 图表容器：配合 图表.js 使用；宽度跟随版心，390px 下完整可读 */
+.chart {
+  width: 100%;
+  height: 240px;
+  margin: 10px 0 4px;
+}
+
+.chart-sm { height: 180px; }
+
+/* ---------- 说明区 ---------- */
+
+/* 口径说明、需核对事项、风险提示：左侧竖线提示，不用警告红、不做大卡片 */
+.note {
+  margin: 12px 0 16px;
+  padding: 10px 14px;
+  border-left: 3px solid var(--info-line);
+  background: var(--info-soft);
+  font-size: 13.5px;
+  color: var(--text);
+}
+
+/* 需要特别注意的事项（风险、口径差异、待确认） */
+.note-attention {
+  border-left-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.note-title {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--info);
+}
+
+.note-attention .note-title { color: var(--accent-text); }
+
+.note p { margin: 4px 0; }
+
+.note ul { margin: 4px 0; padding-left: 1.4em; }
+
+.note li { margin: 2px 0; }
+
+/* ---------- 文末 ---------- */
+
+.report-foot {
+  margin-top: 28px;
+  padding-top: 12px;
+  border-top: 1px solid var(--hairline);
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.report-foot p { margin: 4px 0; }
+
+/* ---------- 演示标识（仅示例与演示稿使用） ---------- */
+
+.demo-banner {
+  margin: 0 0 24px;
+  padding: 8px 14px;
+  border: 1px solid var(--accent-line);
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* ---------- 辅助类 ---------- */
+
+.num { font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+.faint { color: var(--faint); }
+.small { font-size: 13px; }
+.nowrap { white-space: nowrap; }
+
+/* ---------- 桌面（≥720px）：同一布局，收版心成卡片、留白更从容 ---------- */
+
+@media screen and (min-width: 720px) {
+  body { background: var(--desk); }
+  .page {
+    max-width: 660px;
+    margin: 28px auto;
+    padding: 40px 44px 36px;
+    border: 1px solid var(--hairline);
+    box-shadow: 0 1px 2px rgba(30, 42, 56, 0.04), 0 10px 28px rgba(30, 42, 56, 0.05);
+  }
+  .report-head h1 { font-size: 23px; }
+  h2.sec { font-size: 16.5px; }
+  .metric-value { font-size: 20px; }
+  table { font-size: 13.5px; }
+  th, td { padding: 7px 14px; }
+}
+
+/* ---------- 宽屏（≥1200px）：版心放宽，并列信息自然分栏；
+   指标组 grid 随宽度自动多列，图表/少列表用满版心，正文行长仍受 42em 约束 ---------- */
+
+@media screen and (min-width: 1200px) {
+  .page { max-width: 880px; }
+}
+
+/* ---------- 打印 ---------- */
+
+@page { margin: 16mm 14mm; }
+
+@media print {
+  body { background: #ffffff; font-size: 10.5pt; }
+  .page {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+  }
+  .report-head, .metrics, .note, .demo-banner, .chart {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  h2.sec, h3.sub, .caption {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+  tr, .events li, .rows li {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  p, li { orphans: 3; widows: 3; }
+  a { color: inherit; text-decoration: none; }
+}

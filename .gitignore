@@ -1,0 +1,17 @@
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+**/__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+node_modules/
+
+/tmp/
+/output/
+/outputs/
+/reports/
+/validation/
